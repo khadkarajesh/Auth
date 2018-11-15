@@ -1,4 +1,4 @@
-package com.smartmobe.auth
+package com.example.auth
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
