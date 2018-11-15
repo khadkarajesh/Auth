@@ -1,4 +1,4 @@
-package com.crushcoder.kmovies.di
+package com.smartmobe.auth.di
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonParseException
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.smartmobe.auth.App
+import com.smartmobe.auth.AuthConfig
 import com.smartmobe.auth.rest.retrofit.ApiResponseConverter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,7 +32,7 @@ fun <T> create(t: Class<T>): T {
 
     val retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(AuthConfig.getUrl())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(ApiResponseConverter(getDateDeserializer()))
             .addConverterFactory(GsonConverterFactory.create(getDateDeserializer()))
@@ -83,4 +83,4 @@ fun getDateDeserializer(): Gson {
     return gsonBuilder.create()
 }
 
-val context = App.get()
+val context = AuthConfig.getApp()

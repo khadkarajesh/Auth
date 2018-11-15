@@ -1,8 +1,7 @@
-package com.smartmobe.auth
+package com.example.auth
 
 import android.app.Application
-import com.crushcoder.kmovies.di.networkModule
-import org.koin.android.ext.android.startKoin
+import com.smartmobe.auth.AuthConfig
 
 class App : Application() {
     companion object {
@@ -14,7 +13,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AuthConfig.add("https://api.themoviedb.org/3/")
         app = this
-        startKoin(this, listOf(networkModule))
     }
 }

@@ -1,4 +1,4 @@
-package com.crushcoder.kmovies.base.viewmodel
+package com.smartmobe.auth.base.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,10 +7,7 @@ import com.crushcoder.kmovies.rest.LOADING
 import com.crushcoder.kmovies.rest.SUCCESS
 import com.crushcoder.kmovies.rest.State
 import com.crushcoder.kmovies.rest.retrofit.Result
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.koin.standalone.KoinComponent
 import retrofit2.HttpException
 
@@ -26,13 +23,13 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
     abstract fun onActivityCreated()
 
     fun <T> execute(app: Deferred<T>, success: Result<T>) {
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 state.value = LOADING
                 success.success(app.await())
                 state.value = SUCCESS
-            } catch (e: HttpException) {
-                state.value = FAILURE(e.message())
+            } catch (e: Throwable) {
+                state.value = FAILURE(e.localizedMessage)
             } catch (e: Exception) {
                 state.value = FAILURE(e.message!!)
             }
@@ -41,7 +38,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
 
 
     fun <T> execute(app: Deferred<T>, response: (T?) -> Unit) {
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 state.value = LOADING
                 response(app.await())

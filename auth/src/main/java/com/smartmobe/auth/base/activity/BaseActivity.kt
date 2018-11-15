@@ -1,11 +1,11 @@
-package com.crushcoder.kmovies.base.activity
+package com.smartmobe.auth.base.activity
 
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.crushcoder.kmovies.base.viewmodel.BaseViewModel
+import com.smartmobe.auth.base.viewmodel.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModelByClass
 import kotlin.reflect.KClass
 
