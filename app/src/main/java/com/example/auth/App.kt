@@ -1,7 +1,9 @@
 package com.example.auth
 
 import android.app.Application
+import android.content.Intent
 import android.util.Log
+import com.example.auth.ui.dashboard.DashboardActivity
 import com.google.gson.Gson
 import com.smartmobe.auth.AuthConfig
 import com.smartmobe.auth.bus.AuthEvent
@@ -37,6 +39,7 @@ class App : Application() {
                 var baseResponse: BaseResponse<User> = Gson().fromJson(event.result.string(),
                         getType(BaseResponse::class.java, User::class.java))
                 Log.d("login success", "called " + baseResponse.body?.firstName)
+                this.startActivity(Intent(this, DashboardActivity::class.java))
             }
         }
     }
