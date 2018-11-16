@@ -61,7 +61,7 @@ class LoginActivity : BaseActivity<LoginViewModel>(LoginViewModel::class) {
             }
         }
 
-
+        //test
         login_tv_forget_password.setOnClickListener { }
     }
 
