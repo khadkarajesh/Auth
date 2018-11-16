@@ -19,7 +19,7 @@
             android:id="@+id/login_til_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="username">
+            android:hint="@string/hint_auth_username">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_edt_username"
@@ -31,11 +31,12 @@
             android:id="@+id/login_til_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password">
+            android:hint="@string/hint_auth_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_edt_password"
                 android:layout_width="match_parent"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Login"
+            android:text="@string/hint_auth_login"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </LinearLayout>

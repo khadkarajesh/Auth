@@ -16,6 +16,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>(LoginVi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        login_btn_submit.isEnabled = isValid()
         login_edt_username.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }

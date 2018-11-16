@@ -3,4 +3,7 @@
     <string name="msg_auth_username_empty">Username cannot be empty</string>
     <string name="msg_auth_email_invalid">Enter valid email</string>
     <string name="msg_auth_password_empty">Password cannot be empty</string>
+    <string name="hint_auth_login">Login</string>
+    <string name="hint_auth_password">Password</string>
+    <string name="hint_auth_username">Username</string>
 </resources>
