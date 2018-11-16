@@ -31,7 +31,7 @@ fun <T> create(t: Class<T>): T {
 
     val retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl(AuthConfig.getUrl())
+            .baseUrl(AuthConfig.endPoints.baseUrl)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(ApiResponseConverter(getDateDeserializer()))
             .addConverterFactory(GsonConverterFactory.create(getDateDeserializer()))

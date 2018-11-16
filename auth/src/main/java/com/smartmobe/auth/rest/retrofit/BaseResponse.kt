@@ -1,10 +1,7 @@
 package com.smartmobe.auth.rest.retrofit
 
-import com.google.gson.annotations.SerializedName
-
 
 class BaseResponse<R> {
-    @SerializedName("results")
     val body: R? = null
 
     val page: Int = 0
