@@ -19,6 +19,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
     var state: MutableLiveData<State> = MutableLiveData()
     var loadingMessage = ""
 
+
     fun overrideDefaultProgressMessage(message: String) {
         loadingMessage = message
     }
@@ -45,7 +46,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
                 response(app.await())
                 state.value = SUCCESS
             } catch (e: HttpException) {
-                state.value = FAILURE(e.message())
+                state.value = FAILURE(e.message!!)
             } catch (e: Exception) {
                 state.value = FAILURE(e.message!!)
             }

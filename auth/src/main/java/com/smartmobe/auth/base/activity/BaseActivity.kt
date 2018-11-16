@@ -9,6 +9,7 @@ import com.crushcoder.kmovies.rest.LOADING
 import com.crushcoder.kmovies.rest.SUCCESS
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.viewmodel.BaseViewModel
+import com.smartmobe.auth.bus.EventBus
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.koin.androidx.viewmodel.ext.android.viewModelByClass
@@ -25,6 +26,7 @@ abstract class BaseActivity<out T : BaseViewModel>(clazz: KClass<T>) : AppCompat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        EventBus.register(this)
         setContentView(getLayoutId())
         //binding = DataBindingUtil.setContentView(this, getLayoutId())
         viewModel.loadingMessage = getString(R.string.msg_auth_loading)
@@ -43,6 +45,11 @@ abstract class BaseActivity<out T : BaseViewModel>(clazz: KClass<T>) : AppCompat
                 }
             }
         })
+    }
+
+    override fun onDestroy() {
+        EventBus.unregister(this)
+        super.onDestroy()
     }
 
     private fun showProgress(message: String) {

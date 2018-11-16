@@ -7,14 +7,15 @@ import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.kservice.data.rest.response.User
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface AuthService {
-    @POST("auth/authenticate")
-    fun login(@Body body: LoginBody): Deferred<User>
+    @POST
+    fun login(@Url url: String, @Body body: LoginBody): Deferred<ResponseBody>
 
-    @POST("password/reset")
-    fun forgotPassword(@Body body: ForgotPasswordBody): Deferred<Unit>
+    @POST
+    fun forgotPassword(@Url url: String, @Body body: ForgotPasswordBody): Deferred<Unit>
 
     @PATCH("password/reset")
     fun createPassword(@Body passwordBody: PasswordCreateBody): Deferred<Unit>
@@ -23,7 +24,7 @@ interface AuthService {
     fun updatePassword(@Body changePasswordBody: ChangePasswordBody): Deferred<Unit>
 
     @GET("auth/me")
-    fun getUser(): Deferred<User>
+    fun getUser(): Deferred<String>
 
     @PUT("auth/me")
     fun updateUser(@Body user: User?): Deferred<User>
