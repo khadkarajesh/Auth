@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.activity.BaseActivity
 import com.smartmobe.auth.databinding.ActivityLoginBinding
+import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.modulararchitecture.ui.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -53,7 +54,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>(LoginVi
 
         login_btn_submit.setOnClickListener {
             if (isValid()) {
-                viewModel.login()
+                viewModel.login(LoginBody(login_edt_username.text.toString(), login_edt_password.text.toString())
+                        , getString(R.string.msg_auth_logging_in))
             }
         }
 

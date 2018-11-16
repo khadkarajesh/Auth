@@ -5,7 +5,8 @@ import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.kservice.data.rest.service.AuthService
 
 class LoginViewModel(private var authService: AuthService) : BaseViewModel() {
-    fun login(loginBody: LoginBody = LoginBody("rajesh", "khadka")) {
+    fun login(loginBody: LoginBody, msg: String) {
+        overrideDefaultProgressMessage(msg)
         execute(authService.login(loginBody)) { print(it) }
     }
 }

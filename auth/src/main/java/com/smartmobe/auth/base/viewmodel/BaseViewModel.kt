@@ -17,11 +17,16 @@ import retrofit2.HttpException
 
 abstract class BaseViewModel : ViewModel(), KoinComponent {
     var state: MutableLiveData<State> = MutableLiveData()
+    var loadingMessage = ""
+
+    fun overrideDefaultProgressMessage(message: String) {
+        loadingMessage = message
+    }
 
     fun <T> execute(app: Deferred<T>, success: Result<T>) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                state.value = LOADING
+                state.value = LOADING(loadingMessage)
                 success.success(app.await())
                 state.value = SUCCESS
             } catch (e: Throwable) {
@@ -36,7 +41,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
     fun <T> execute(app: Deferred<T>, response: (T?) -> Unit) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                state.value = LOADING
+                state.value = LOADING(loadingMessage)
                 response(app.await())
                 state.value = SUCCESS
             } catch (e: HttpException) {
