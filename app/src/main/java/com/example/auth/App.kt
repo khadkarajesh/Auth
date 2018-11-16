@@ -11,6 +11,8 @@ import com.smartmobe.auth.rest.EndPoint
 import com.smartmobe.auth.rest.retrofit.BaseResponse
 import com.smartmobe.kservice.data.rest.response.User
 import com.squareup.otto.Subscribe
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 
 class App : Application() {
 
@@ -32,9 +34,29 @@ class App : Application() {
     fun onSuccess(event: AuthEvent) {
         when (event) {
             is LoginSuccess -> {
-                var baseResponse: BaseResponse<*>? = Gson().fromJson(event.result.string(), BaseResponse::class.java)
-                var user = baseResponse?.body as User
-                Log.d("login success", "called " + user.firstName)
+                var baseResponse: BaseResponse<User> = Gson().fromJson(event.result.string(),
+                        getType(BaseResponse::class.java, User::class.java))
+                Log.d("login success", "called " + baseResponse.body?.firstName)
+            }
+        }
+    }
+
+    /**
+     * serializing the generics
+     * <a href="https://dzone.com/articles/deserialization-1"></a>
+     */
+    private fun getType(rawClass: Class<*>, parameterClass: Class<*>): Type {
+        return object : ParameterizedType {
+            override fun getRawType(): Type {
+                return rawClass
+            }
+
+            override fun getOwnerType(): Type? {
+                return null
+            }
+
+            override fun getActualTypeArguments(): Array<Type> {
+                return arrayOf(parameterClass)
             }
         }
     }
