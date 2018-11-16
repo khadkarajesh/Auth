@@ -33,6 +33,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.app_compat
     implementation deps.support.design
+    implementation (deps.anko){
+        exclude group: "com.android.support"
+    }
 
     implementation deps.coroutines.coroutine
     implementation deps.koin.scope

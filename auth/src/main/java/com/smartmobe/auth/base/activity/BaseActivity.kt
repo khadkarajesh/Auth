@@ -2,7 +2,6 @@ package com.smartmobe.auth.base.activity
 
 import android.app.ProgressDialog
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -12,6 +11,8 @@ import com.crushcoder.kmovies.rest.LOADING
 import com.crushcoder.kmovies.rest.SUCCESS
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.viewmodel.BaseViewModel
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.koin.androidx.viewmodel.ext.android.viewModelByClass
 import kotlin.reflect.KClass
 
@@ -28,27 +29,26 @@ abstract class BaseActivity<out T : BaseViewModel, B : ViewDataBinding>(clazz: K
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         binding = DataBindingUtil.setContentView(this, getLayoutId())
-        dialog = ProgressDialog(this)
         viewModel.loadingMessage = getString(R.string.msg_auth_loading)
         viewModel.state.observe(this, Observer {
             when (it) {
                 is LOADING -> {
-                    showProgress(it.message)
+                    dialog = indeterminateProgressDialog(it.message)
+                    dialog.show()
                 }
                 is SUCCESS -> {
                     hideProgress()
                 }
                 is FAILURE -> {
-                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     hideProgress()
+                    showDialog(it.message)
                 }
             }
         })
     }
 
     private fun showProgress(message: String) {
-        dialog.setMessage(message)
-        dialog.show()
+        indeterminateProgressDialog(message).show()
     }
 
     private fun hideProgress() {
@@ -59,7 +59,7 @@ abstract class BaseActivity<out T : BaseViewModel, B : ViewDataBinding>(clazz: K
         supportActionBar?.title = title
     }
 
-    fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private fun showDialog(message: String) {
+        alert(message) { positiveButton(android.R.string.ok) { it.dismiss() } }.show()
     }
 }

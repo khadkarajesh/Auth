@@ -146,6 +146,8 @@ navigation.safe_args_plugin = "android.arch.navigation:navigation-safe-args-grad
 navigation.testing = "android.arch.navigation:navigation-testing:$versions.navigation"
 deps.navigation = navigation
 
+deps.anko = "org.jetbrains.anko:anko:0.10.8"
+
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
