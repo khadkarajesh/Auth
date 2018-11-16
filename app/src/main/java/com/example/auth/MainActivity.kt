@@ -3,7 +3,7 @@ package com.example.auth
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.smartmobe.auth.ui.LoginActivity
+import com.smartmobe.auth.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

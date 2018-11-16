@@ -1,52 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_8x2">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.smartmobe.modulararchitecture.ui.login.LoginViewModel" />
-    </data>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_til_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/hint_auth_username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_edt_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_til_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_auth_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login_btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen_8x2">
+        android:text="@string/hint_auth_login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_til_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_auth_username">
+    <TextView
+        android:id="@+id/login_tv_forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/auth_txt_forgot_password" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_edt_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_til_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_auth_password">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_edt_password"
-                android:layout_width="match_parent"
-                android:inputType="textPassword"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_btn_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/hint_auth_login"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    </LinearLayout>
-</layout>
+</LinearLayout>

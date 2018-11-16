@@ -8,4 +8,5 @@
     <string name="hint_auth_username">Username</string>
     <string name="msg_auth_loading">Loading...</string>
     <string name="msg_auth_logging_in">Logging in...</string>
+    <string name="auth_txt_forgot_password">Forgot password?</string>
 </resources>

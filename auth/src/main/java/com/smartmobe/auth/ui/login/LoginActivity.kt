@@ -1,21 +1,23 @@
-package com.smartmobe.auth.ui
+package com.smartmobe.auth.ui.login
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Window
+import android.view.WindowManager
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.activity.BaseActivity
-import com.smartmobe.auth.databinding.ActivityLoginBinding
 import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.modulararchitecture.ui.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>(LoginViewModel::class) {
+class LoginActivity : BaseActivity<LoginViewModel>(LoginViewModel::class) {
     override fun getLayoutId(): Int {
         return R.layout.activity_login
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        makeFullScreen()
         super.onCreate(savedInstanceState)
         login_btn_submit.isEnabled = isValid()
         login_edt_username.addTextChangedListener(object : TextWatcher {
@@ -28,7 +30,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>(LoginVi
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 login_til_username.error = null
                 if (s.isNullOrEmpty()) {
-                    binding?.loginTilUsername?.error = getString(R.string.msg_auth_username_empty)
+                    login_til_username.error = getString(R.string.msg_auth_username_empty)
                 } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
                     login_til_username.error = getString(R.string.msg_auth_email_invalid)
                 }
@@ -59,6 +61,14 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>(LoginVi
             }
         }
 
+
+        login_tv_forget_password.setOnClickListener { }
+    }
+
+    private fun makeFullScreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        supportActionBar?.hide()
     }
 
     fun isValid(): Boolean {

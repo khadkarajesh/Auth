@@ -3,8 +3,6 @@ package com.smartmobe.auth.base.activity
 import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.crushcoder.kmovies.rest.FAILURE
 import com.crushcoder.kmovies.rest.LOADING
@@ -17,18 +15,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModelByClass
 import kotlin.reflect.KClass
 
 
-abstract class BaseActivity<out T : BaseViewModel, B : ViewDataBinding>(clazz: KClass<T>) : AppCompatActivity() {
+abstract class BaseActivity<out T : BaseViewModel>(clazz: KClass<T>) : AppCompatActivity() {
     private val tag = BaseActivity::class.java.simpleName
     private lateinit var dialog: ProgressDialog
     val viewModel: T by viewModelByClass(clazz)
-    var binding: B? = null
+    //var binding: B? = null
 
     abstract fun getLayoutId(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        //binding = DataBindingUtil.setContentView(this, getLayoutId())
         viewModel.loadingMessage = getString(R.string.msg_auth_loading)
         viewModel.state.observe(this, Observer {
             when (it) {
@@ -53,10 +51,6 @@ abstract class BaseActivity<out T : BaseViewModel, B : ViewDataBinding>(clazz: K
 
     private fun hideProgress() {
         dialog.hide()
-    }
-
-    fun setToolbarTitle(title: String) {
-        supportActionBar?.title = title
     }
 
     private fun showDialog(message: String) {
