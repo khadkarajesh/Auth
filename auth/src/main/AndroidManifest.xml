@@ -9,7 +9,9 @@
             android:authorities="${applicationId}.AuthProvider"
             android:enabled="true"
             android:exported="false" />
-        <activity android:name=".ui.LoginActivity" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
     </application>
 
 </manifest>

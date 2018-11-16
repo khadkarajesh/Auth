@@ -25,7 +25,6 @@ val networkModule = module {
 }
 
 fun <T> create(t: Class<T>): T {
-
     val client = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
@@ -37,7 +36,6 @@ fun <T> create(t: Class<T>): T {
             .addConverterFactory(ApiResponseConverter(getDateDeserializer()))
             .addConverterFactory(GsonConverterFactory.create(getDateDeserializer()))
             .build()
-
 
     return retrofit.create(t)
 }

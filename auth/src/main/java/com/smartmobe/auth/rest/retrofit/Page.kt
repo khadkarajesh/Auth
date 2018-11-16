@@ -1,4 +1,4 @@
-package com.crushcoder.kmovies.rest.retrofit
+package com.smartmobe.auth.rest.retrofit
 
 
 @kotlin.annotation.Target(AnnotationTarget.FUNCTION)

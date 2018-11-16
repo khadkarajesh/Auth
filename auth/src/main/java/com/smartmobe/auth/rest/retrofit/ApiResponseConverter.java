@@ -1,8 +1,6 @@
 package com.smartmobe.auth.rest.retrofit;
 
-import com.crushcoder.kmovies.rest.retrofit.Page;
 import com.google.gson.Gson;
-import com.smartmobe.kservice.data.rest.retrofit.BaseResponse;
 import com.smartmobe.kservice.data.rest.retrofit.WrappedResponseBodyConverter;
 
 import java.io.IOException;

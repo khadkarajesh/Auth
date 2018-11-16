@@ -1,6 +1,7 @@
 package com.smartmobe.kservice.data.rest.retrofit
 
 import com.google.gson.Gson
+import com.smartmobe.auth.rest.retrofit.BaseResponse
 import retrofit2.HttpException
 
 object ErrorUtils {

@@ -1,5 +1,6 @@
 package com.smartmobe.kservice.data.rest.retrofit
 
+import com.smartmobe.auth.rest.retrofit.BaseResponse
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import java.io.IOException

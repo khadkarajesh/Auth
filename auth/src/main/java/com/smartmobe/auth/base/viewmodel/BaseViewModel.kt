@@ -7,20 +7,16 @@ import com.crushcoder.kmovies.rest.LOADING
 import com.crushcoder.kmovies.rest.SUCCESS
 import com.crushcoder.kmovies.rest.State
 import com.crushcoder.kmovies.rest.retrofit.Result
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.standalone.KoinComponent
 import retrofit2.HttpException
 
 
 abstract class BaseViewModel : ViewModel(), KoinComponent {
     var state: MutableLiveData<State> = MutableLiveData()
-    private lateinit var job: Job
-
-    fun onCreate() {
-        onActivityCreated()
-    }
-
-    abstract fun onActivityCreated()
 
     fun <T> execute(app: Deferred<T>, success: Result<T>) {
         GlobalScope.launch(Dispatchers.Main) {

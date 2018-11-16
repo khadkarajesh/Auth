@@ -1,4 +1,4 @@
-package com.smartmobe.kservice.data.rest.retrofit
+package com.smartmobe.auth.rest.retrofit
 
 import com.google.gson.annotations.SerializedName
 
