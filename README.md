@@ -1,7 +1,7 @@
 # Auth
 Authentication module
 
-#Uses
+# Uses
 Add in Application class
 
 ``` 
