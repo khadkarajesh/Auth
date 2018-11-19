@@ -29,3 +29,30 @@ AuthConfig.setEndpoint(endPoint)
         }
     }
 ```
+
+# Deserialize Response Body 
+
+```
+var baseResponse: BaseResponse<User> = Gson().fromJson(event.result.string(), getType(BaseResponse::class.java, User::class.java))
+Log.d("login success", "called " + baseResponse.body?.firstName)
+this.startActivity(Intent(this, DashboardActivity::class.java))
+```
+
+
+```
+private fun getType(rawClass: Class<*>, parameterClass: Class<*>): Type {
+        return object : ParameterizedType {
+            override fun getRawType(): Type {
+                return rawClass
+            }
+
+            override fun getOwnerType(): Type? {
+                return null
+            }
+
+            override fun getActualTypeArguments(): Array<Type> {
+                return arrayOf(parameterClass)
+            }
+        }
+    }
+```
