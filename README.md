@@ -4,10 +4,9 @@ Authentication module
 # Uses
 Add in Application class
 
+## Step 1
+Add config on applcations ```onCreate()```
 ``` 
-//register to get the success response in application's class ```onCreate``` method
-EventBus.register(this)
-
 var endPoint = EndPoint.Builder()
                 .baseUrl("your_base_url")
                 .login("auth/authenticate")
@@ -16,15 +15,18 @@ var endPoint = EndPoint.Builder()
                 .build()
 AuthConfig.setEndpoint(endPoint)
 ```
-
+## Step 2
+Register event to get response
+```
+EventBus.register(this)
+```
+Get Response as:
 ```
  @Subscribe
     fun onSuccess(event: AuthEvent) {
         when (event) {
             is LoginSuccess -> {
-                var baseResponse: BaseResponse<User> = Gson().fromJson(event.result.string(),
-                        getType(BaseResponse::class.java, User::class.java))
-                this.startActivity(Intent(this, DashboardActivity::class.java))
+               // your result
             }
         }
     }
