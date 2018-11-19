@@ -30,7 +30,13 @@ AuthConfig.setEndpoint(endPoint)
     }
 ```
 
-# Deserialize Response Body 
+# Deserialize Response Body BaseResponse<T> 
+```
+class BaseResponse<R> {
+    @SerializedName("body")
+    val body: R? = null
+}
+```
 
 ```
 var baseResponse: BaseResponse<User> = Gson().fromJson(event.result.string(), getType(BaseResponse::class.java, User::class.java))
