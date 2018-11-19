@@ -5,7 +5,7 @@ Authentication module
 Add in Application class
 
 ``` 
-//register to get the success response
+//register to get the success response in application's class ```onCreate``` method
 EventBus.register(this)
 
 var endPoint = EndPoint.Builder()
