@@ -1,5 +1,6 @@
 package com.smartmobe.auth.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,6 +8,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.activity.BaseActivity
+import com.smartmobe.auth.ui.signup.SignupActivity
 import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.modulararchitecture.ui.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -19,6 +21,7 @@ class LoginActivity : BaseActivity<LoginViewModel>(LoginViewModel::class) {
     override fun onCreate(savedInstanceState: Bundle?) {
         makeFullScreen()
         super.onCreate(savedInstanceState)
+        startActivity(Intent(this, SignupActivity::class.java))
         login_btn_submit.isEnabled = isValid()
         login_edt_username.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

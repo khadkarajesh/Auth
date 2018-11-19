@@ -3,12 +3,16 @@
     package="com.smartmobe.auth">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application>
         <provider
             android:name=".AuthProvider"
             android:authorities="${applicationId}.AuthProvider"
             android:enabled="true"
             android:exported="false" />
+
         <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.signup.SignupActivity"></activity>
     </application>
+
 </manifest>

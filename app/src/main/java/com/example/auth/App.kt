@@ -9,12 +9,11 @@ import com.smartmobe.auth.AuthConfig
 import com.smartmobe.auth.bus.AuthEvent
 import com.smartmobe.auth.bus.EventBus
 import com.smartmobe.auth.bus.LoginSuccess
+import com.smartmobe.auth.extensions.getType
 import com.smartmobe.auth.rest.EndPoint
 import com.smartmobe.auth.rest.retrofit.BaseResponse
 import com.smartmobe.kservice.data.rest.response.User
 import com.squareup.otto.Subscribe
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 
 class App : Application() {
 
@@ -36,30 +35,11 @@ class App : Application() {
     fun onSuccess(event: AuthEvent) {
         when (event) {
             is LoginSuccess -> {
-                var baseResponse: BaseResponse<User> = Gson().fromJson(event.result.string(),
-                        getType(BaseResponse::class.java, User::class.java))
+                var gson = Gson()
+                var baseResponse: BaseResponse<User> = gson.fromJson(event.result.string(),
+                        gson.getType(BaseResponse::class.java, User::class.java))
                 Log.d("login success", "called " + baseResponse.body?.firstName)
                 this.startActivity(Intent(this, DashboardActivity::class.java))
-            }
-        }
-    }
-
-    /**
-     * serializing the generics
-     * <a href="https://dzone.com/articles/deserialization-1"></a>
-     */
-    private fun getType(rawClass: Class<*>, parameterClass: Class<*>): Type {
-        return object : ParameterizedType {
-            override fun getRawType(): Type {
-                return rawClass
-            }
-
-            override fun getOwnerType(): Type? {
-                return null
-            }
-
-            override fun getActualTypeArguments(): Array<Type> {
-                return arrayOf(parameterClass)
             }
         }
     }
