@@ -8,6 +8,8 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonParseException
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.smartmobe.auth.AuthConfig
+import com.smartmobe.auth.extensions.isNetworkAvailable
+import com.smartmobe.auth.rest.exceptions.NetworkException
 import com.smartmobe.auth.rest.retrofit.ApiResponseConverter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,6 +29,11 @@ val networkModule = module {
 fun <T> create(t: Class<T>): T {
     val client = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor {
+                if (!context.isNetworkAvailable()) throw NetworkException()
+                var request = it.request()
+                return@addInterceptor it.proceed(request)
+            }
             .build()
 
     val retrofit = Retrofit.Builder()

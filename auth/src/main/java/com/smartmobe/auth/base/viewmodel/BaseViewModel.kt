@@ -2,11 +2,9 @@ package com.smartmobe.auth.base.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.crushcoder.kmovies.rest.FAILURE
-import com.crushcoder.kmovies.rest.LOADING
-import com.crushcoder.kmovies.rest.SUCCESS
-import com.crushcoder.kmovies.rest.State
 import com.crushcoder.kmovies.rest.retrofit.Result
+import com.smartmobe.auth.rest.exceptions.NetworkException
+import com.smartmobe.auth.rest.retrofit.*
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -45,6 +43,8 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
                 state.value = LOADING(loadingMessage)
                 response(app.await())
                 state.value = SUCCESS
+            } catch (e: NetworkException) {
+                state.value = NetworkFailureState
             } catch (e: HttpException) {
                 state.value = FAILURE(e.message!!)
             } catch (e: Exception) {

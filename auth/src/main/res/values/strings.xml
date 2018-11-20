@@ -14,4 +14,5 @@
     <string name="auth_txt_forgot_password">Forgot password?</string>
     <string name="msg_auth_confirm_password_should_be_same">Confirm password must be same</string>
     <string name="msg_auth_empty_input_field">can not be empty</string>
+    <string name="msg_auth_no_internet_connection">Please check your internet connection</string>
 </resources>

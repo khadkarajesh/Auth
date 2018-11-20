@@ -4,12 +4,13 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.crushcoder.kmovies.rest.FAILURE
-import com.crushcoder.kmovies.rest.LOADING
-import com.crushcoder.kmovies.rest.SUCCESS
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.viewmodel.BaseViewModel
 import com.smartmobe.auth.bus.EventBus
+import com.smartmobe.auth.rest.retrofit.FAILURE
+import com.smartmobe.auth.rest.retrofit.LOADING
+import com.smartmobe.auth.rest.retrofit.NetworkFailureState
+import com.smartmobe.auth.rest.retrofit.SUCCESS
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.koin.androidx.viewmodel.ext.android.viewModelByClass
@@ -42,6 +43,10 @@ abstract class BaseActivity<out T : BaseViewModel>(clazz: KClass<T>) : AppCompat
                 is FAILURE -> {
                     hideProgress()
                     showDialog(it.message)
+                }
+                is NetworkFailureState -> {
+                    hideProgress()
+                    showDialog(getString(R.string.msg_auth_no_internet_connection))
                 }
             }
         })
