@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Window
-import android.view.WindowManager
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.activity.BaseActivity
+import com.smartmobe.auth.extensions.makeFullScreen
 import com.smartmobe.auth.ui.signup.SignupActivity
 import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.modulararchitecture.ui.login.LoginViewModel
@@ -65,12 +64,6 @@ class LoginActivity : BaseActivity<LoginViewModel>(LoginViewModel::class) {
         }
 
         login_tv_forget_password.setOnClickListener { }
-    }
-
-    private fun makeFullScreen() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        supportActionBar?.hide()
     }
 
     fun isValid(): Boolean {

@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">auth</string>
     <string name="msg_auth_username_empty">Username cannot be empty</string>
-    <string name="msg_auth_email_invalid">Enter valid email</string>
+    <string name="msg_auth_email_invalid">Enter valid email address</string>
     <string name="msg_auth_password_empty">Password cannot be empty</string>
     <string name="hint_auth_login">Login</string>
+    <string name="hint_auth_signup">Sign Up</string>
     <string name="hint_auth_password">Password</string>
+    <string name="hint_auth_confirm_password">Confirm Password</string>
     <string name="hint_auth_username">Username</string>
+    <string name="hint_auth_email">Email</string>
     <string name="msg_auth_loading">Loading...</string>
     <string name="msg_auth_logging_in">Logging in...</string>
     <string name="auth_txt_forgot_password">Forgot password?</string>
+    <string name="msg_auth_confirm_password_should_be_same">Confirm password must be same</string>
+    <string name="msg_auth_empty_input_field">can not be empty</string>
 </resources>

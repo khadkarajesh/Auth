@@ -37,7 +37,7 @@ dependencies {
     implementation(deps.anko) {
         exclude group: "com.android.support"
     }
-
+    implementation 'androidx.core:core-ktx:1.0.1'
     implementation deps.coroutines.coroutine
     implementation deps.koin.scope
     implementation deps.koin.viewmodel
