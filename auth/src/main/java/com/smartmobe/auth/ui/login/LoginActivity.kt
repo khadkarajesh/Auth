@@ -20,7 +20,6 @@ class LoginActivity : BaseActivity<LoginViewModel>(LoginViewModel::class) {
     override fun onCreate(savedInstanceState: Bundle?) {
         makeFullScreen()
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this, SignupActivity::class.java))
         login_btn_submit.isEnabled = isValid()
         login_edt_username.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -63,7 +62,9 @@ class LoginActivity : BaseActivity<LoginViewModel>(LoginViewModel::class) {
             }
         }
 
-        login_tv_forget_password.setOnClickListener { }
+        login_tv_create_account.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
+        }
     }
 
     fun isValid(): Boolean {

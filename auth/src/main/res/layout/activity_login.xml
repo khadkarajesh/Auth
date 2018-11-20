@@ -46,6 +46,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:padding="@dimen/dimen_8x2"
         android:text="@string/auth_txt_forgot_password" />
+
+    <TextView
+        android:id="@+id/login_tv_create_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/dimen_8x2"
+        android:text="@string/auth_txt_create_account" />
 
 </LinearLayout>
