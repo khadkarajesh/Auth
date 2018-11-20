@@ -9,6 +9,7 @@ import com.smartmobe.auth.AuthConfig
 import com.smartmobe.auth.bus.AuthEvent
 import com.smartmobe.auth.bus.EventBus
 import com.smartmobe.auth.bus.LoginSuccess
+import com.smartmobe.auth.bus.SignupSuccess
 import com.smartmobe.auth.extensions.getType
 import com.smartmobe.auth.rest.EndPoint
 import com.smartmobe.auth.rest.retrofit.BaseResponse
@@ -33,13 +34,16 @@ class App : Application() {
 
     @Subscribe
     fun onSuccess(event: AuthEvent) {
+        var gson = Gson()
         when (event) {
             is LoginSuccess -> {
-                var gson = Gson()
                 var baseResponse: BaseResponse<User> = gson.fromJson(event.result.string(),
                         gson.getType(BaseResponse::class.java, User::class.java))
                 Log.d("login success", "called " + baseResponse.body?.firstName)
                 this.startActivity(Intent(this, DashboardActivity::class.java))
+            }
+            is SignupSuccess -> {
+
             }
         }
     }

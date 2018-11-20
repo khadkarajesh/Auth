@@ -7,8 +7,8 @@ import android.text.TextWatcher
 import com.smartmobe.auth.R
 import com.smartmobe.auth.base.activity.BaseActivity
 import com.smartmobe.auth.extensions.makeFullScreen
+import com.smartmobe.auth.rest.request.LoginBody
 import com.smartmobe.auth.ui.signup.SignupActivity
-import com.smartmobe.kservice.data.rest.request.LoginBody
 import com.smartmobe.modulararchitecture.ui.login.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
